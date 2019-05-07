@@ -62,3 +62,29 @@ task. Current version of ``cvprack`` does not support it in version 1.0.1
 Fix is available in develop version. To install development version, use pip::
 
    $ pip install git+https://github.com/aristanetworks/cvprac.git@develop
+
+
+Build development environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is highly recommended to use Python virtual environment for testing
+
+.. code:: shell
+
+   $ git clone https://github.com/titom73/arista-cvp-scripts.git
+   $ cd arista-cvp-scripts
+
+   # Create virtualenv
+   $ virtualenv -p /usr/bin/python2.7 .venv
+
+   # Load virtualenvironment
+   $ source .venv/bin/activate
+
+   # Install module in develop mode for auto reload changes
+   $ python setup.py develop
+   
+   # Install Python linter
+   $ pip install flake8
+
+   # Install pre-commit hook
+   $ ln -s -f .ci/pre-commit .git/hooks/pre-commit
