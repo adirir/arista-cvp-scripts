@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import json
 import logging
 import time
 from datetime import datetime
@@ -489,26 +488,26 @@ if __name__ == '__main__':
         if 'action' in ACTION and ACTION['type'] == 'configlet':
             if ACTION['action'] == 'add':
                 logging.info('configlet %s is going to be created %s',
-                                ACTION['name'],
-                                ACTION['configlet'])
+                             ACTION['name'],
+                             ACTION['configlet'])
                 action_add(configlet_def=ACTION, parameters=OPTIONS)
             elif ACTION['action'] == 'delete':
                 logging.info('configlet %s is going to be deleted %s',
-                                ACTION['name'],
-                                ACTION['configlet'])
+                             ACTION['name'],
+                             ACTION['configlet'])
                 action_delete(configlet_def=ACTION, parameters=OPTIONS)
             elif ACTION['action'] == 'update':
                 logging.info('configlet %s is going to be updated %s',
-                                ACTION['name'],
-                                ACTION['configlet'])
+                             ACTION['name'],
+                             ACTION['configlet'])
                 action_update(configlet_def=ACTION, parameters=OPTIONS)
             elif ACTION['action'] == 'remove-devices':
                 logging.info('configlet %s is going to be removed from devices',
-                                ACTION['name'])
+                             ACTION['name'])
                 action_remove_devices(configlet_def=ACTION, parameters=OPTIONS)
             elif ACTION['action'] == 'add-devices':
                 logging.info('configlet %s is going to be added to devices',
-                                ACTION['name'])
+                             ACTION['name'])
                 action_add_devices(configlet_def=ACTION, parameters=OPTIONS)
             else:
                 logging.error('Unsupported action.\

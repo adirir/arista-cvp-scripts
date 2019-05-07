@@ -1,20 +1,16 @@
-
 #!/usr/local/bin/python
 # -*- coding: utf-8 -*-
 
 import argparse
-import json
 import logging
 import time
 import cvprac_abstraction
 from cvprac_abstraction import CVP, LOG_LEVEL, JSON_CONFIG
 from cvprac_abstraction import connect_to_cvp, config_read
-from cvprac_abstraction.cvpInventory import CvpInventory
 from cvprac_abstraction.cvpContainer import CvpContainer
 import requests
 # Import to optionnaly disable HTTPS cert validation
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
-
 
 r"""Script to manage manage container on CloudVision Portal.
 
@@ -176,8 +172,6 @@ def action_attach_device(tasker, parameters):
         else:
             logging.info('device is not part of that container -- moving forward')
     container.attach_device_bulk(hostname_list=tasker['devices'], deploy=tasker['apply'])
-
-
 
 
 if __name__ == '__main__':

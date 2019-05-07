@@ -3,9 +3,9 @@ import json
 import logging
 from cvprac.cvp_client import CvpClient
 from cvprac.cvp_client_errors import CvpLoginError
-import requests
-# Import to optionnaly disable HTTPS cert validation
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
+# import requests
+# # Import to optionnaly disable HTTPS cert validation
+# from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 # Code version
 __version__ = '0.1a'
@@ -148,7 +148,7 @@ def connect_to_cvp(parameters):
     client = CvpClient()
     try:
         client.connect([parameters.cvp], parameters.username,
-                        parameters.password, 10, CVP['PROTO'], CVP['PORT'])
+                       parameters.password, 10, CVP['PROTO'], CVP['PORT'])
         logging.info('Connected to %s', CVP['HOST'])
     except CvpLoginError, e:
         # If error, then, printout message and quit program

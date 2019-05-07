@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from datetime import timedelta
+from cvprac.cvp_client_errors import CvpApiError
 
 
 class CvpChangeControl(object):
