@@ -21,7 +21,7 @@ How-To and use-cases:
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: How-To and use-cases:
 
    configlet_usages.rst
    container_usages.rst
@@ -31,7 +31,7 @@ Code documentation
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: Code documentation:
 
    modules.rst
 
