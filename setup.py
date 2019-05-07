@@ -16,9 +16,9 @@ shutil.copyfile('bin/cvp-container-manager.py', 'bin/cvp-container-manager')
 shutil.copyfile('bin/cvp-configlet-manager.py', 'bin/cvp-configlet-manager')
 
 setup(
-    name="cvp-tools-api",
+    name="cvp-tools-scripts",
     version=cvprac_abstraction.__version__,
-    scripts=["bin/arista-cvp-container-manager.py"],
+    scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager"],
     packages=['cvprac_abstraction'],
     python_requires=">=2.7",
     install_requires=REQUIRED_PACKAGES,
