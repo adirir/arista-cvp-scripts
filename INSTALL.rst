@@ -87,4 +87,4 @@ It is highly recommended to use Python virtual environment for testing
    $ pip install flake8
 
    # Install pre-commit hook
-   $ ln -s -f .ci/pre-commit .git/hooks/pre-commit
+   $ ln -s -f ../../.ci/pre-commit .git/hooks/pre-commit
