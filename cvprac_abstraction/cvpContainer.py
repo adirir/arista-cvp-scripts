@@ -8,6 +8,32 @@ class CvpContainer(object):
 
     Centralize a abstraction layer of CVPRAC to manage actions related to container.
 
+    **List of public available methods:**
+
+    Methods
+    -------
+    create()
+        Create a new container on CloudVision Platform
+    destroy()
+        Delete an existing with no attached devices container on CloudVision Platform
+    is_device_attached()
+        Poll CVP to know if a device is already part of given container
+    get_info()
+        Get container's information from CVP server
+    attach_device()
+        Create a task to attach a given device to container
+    attach_device_bulk()
+        Create a list of tasks to attach many devices to container
+    run_pending()
+        Execute all pengind tasks created by cvpContainer object.
+
+    Note::
+    ------
+
+    This class use calls to ``cvprac`` to get and push data to CVP server.
+
+    
+
     """
     def __init__(self, name, cvp_server):
         """Class Constructor.

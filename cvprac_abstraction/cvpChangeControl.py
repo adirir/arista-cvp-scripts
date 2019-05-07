@@ -13,7 +13,7 @@ class CvpChangeControl(object):
         - An optional scheduling. If no schedule is defined,
             then task will be run 3 minutes after creatio of CC
 
-    **List of Available methods:**
+    **List of public available methods:**
 
     Methods
     -------
@@ -32,7 +32,7 @@ class CvpChangeControl(object):
 
     Warnings
     --------
-    - Change Control execution is not running snapshot before and after
+    - Change Control execution is not running snapshot before and after with cvprac 1.0.1
 
     """
 

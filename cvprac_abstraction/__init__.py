@@ -25,28 +25,31 @@ JSON_CONFIG = 'actions.json'
 
 
 def load_constant(key_name, default='UNSET', verbose=False):
-    r"""Set up constant value from OS Environment.
+    """Set up constant value from OS Environment.
 
     Help to define CONSTANT from OS Environment.
     If it is not defined, then, fallback to default value
     provided within parameters
 
-    :Example:
+    :Example::
 
     >>> USERNAME = load_constant(key_name='USERNAME_1', default='myUser')
     >>> print USERNAME
     myUsername
 
-    :param key_name: VAR to lookup in os.environment
-    :type key_name: str
-    :param default: Default value to use if key_name is not defined.
-    :type default: str
-    :param verbose: Boolean to activate verbos mode (Optional,
-        expected values: debug level)
-    :type verbose: bool
-    :returns: Value for variable
-    :rtype: str
+    Parameters
+    ----------
+    key_name : string
+        VAR to lookup in os.environment
+    default : str, optional
+        Default value to use if key_name is not defined. By default set to UNSET
+    verbose : bool, optional
+        Boolean to activate verbos mode
 
+    Returns
+    -------
+    str
+        Value to use to configure variable
     """
     if key_name in os.environ:
         if verbose:
@@ -141,7 +144,7 @@ def connect_to_cvp(parameters):
 
     Returns
     -------
-    cvprack.CvpClient
+    cvprac.CvpClient()
         cvp client object
 
     """

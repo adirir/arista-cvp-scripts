@@ -40,7 +40,7 @@ class CvpConfiglet(object):
         server, False other cases
 
 
-    **List of Available methods:**
+    **List of public available methods:**
 
     Methods
     -------
@@ -61,10 +61,10 @@ class CvpConfiglet(object):
     on_cvp()
         Inform about configlet available on CVP
 
-    Note
-    ----
+    Note::
+    ------
 
-    This class use call to ``cvprac`` to get and push data to CVP server.
+    This class use calls to ``cvprac`` to get and push data to CVP server.
 
     """
 
