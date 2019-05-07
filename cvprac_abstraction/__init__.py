@@ -13,7 +13,7 @@ __version__ = '0.1a'
 # Author information
 __author__ = 'Thomas Grimonet'
 __email__ = 'tgrimonet@arista.com'
-__copyright__ = "Copyright 2019, Arista Networks"
+__copyright__ = "Copyright 2019, Arista EMEA Advanced Service Team"
 __credits__ = ["Thomas Grimonet"]
 __license__ = "BSD"
 

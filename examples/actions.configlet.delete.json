@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Delete CVP Configlet VLANsTEMP",
+        "type": "configlet",
+        "action": "delete",
+        "configlet": "VLANsTEMP",
+        "apply": true
+    }
+]

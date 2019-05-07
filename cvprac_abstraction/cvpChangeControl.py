@@ -216,13 +216,11 @@ class CvpChangeControl(object):
         if len(self._list_changes) == 0:
             self._build_change_dictionnary(order_mode=mode)
 
-        if LOGLEVEL == logging.DEBUG:
-            logging.debug('Tasks to attach to current change-control:')
-            for entry in self._list_changes:
-                logging.debug('  * Found task %s w/ position %s',
-                              entry['taskId'],
-                              entry['taskOrder'])
-            print(json.dumps(self._list_changes, indent=2, sort_keys=True))
+        logging.debug('Tasks to attach to current change-control:')
+        for entry in self._list_changes:
+            logging.debug('  * Found task %s w/ position %s',
+                          entry['taskId'],
+                          entry['taskOrder'])
         # FIXME: change-control does not set snapshot ID correctly and this one is not run before and after change
         # Fix implemented in develop version :
         # https://github.com/aristanetworks/cvprac/blob/develop/cvprac/cvp_api.py#L1633

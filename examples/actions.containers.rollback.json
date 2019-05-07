@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Change CVX to EVPN",
+        "type": "container",
+        "action": "attach-device",
+        "container": "Leaf",
+        "apply": true,
+        "devices": [
+            "leaf1",
+            "leaf2"
+        ]
+    },
+    {
+        "name": "Change CVX to EVPN",
+        "type": "container",
+        "action": "attach-device",
+        "container": "CVX",
+        "apply": true,
+        "devices": [
+            "cvx01"
+        ]
+    },
+    {
+        "name": "Destroy container",
+        "type": "container",
+        "action": "destroy",
+        "container": "Test Container",
+        "parent": "Tenant"
+    }
+]

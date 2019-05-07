@@ -1,0 +1,27 @@
+.. CVP Uploader documentation master file, created by
+   sphinx-quickstart on Wed Mar 20 10:41:54 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to CVP Uploader's documentation!
+========================================
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+   README.rst
+   install.rst
+   script_options.rst
+   configlet_usages.rst
+
+   modules.rst
+
+.. include:: README.rst
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

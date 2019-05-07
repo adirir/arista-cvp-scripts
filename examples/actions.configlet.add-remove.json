@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Remove Leaf3 from configlet",
+        "type": "configlet",
+        "action": "remove-devices",
+        "configlet": "VLANsTEMP",
+        "apply": false,
+        "devices": [
+            "leaf3"
+        ]
+    },
+    {
+        "name": "Add Leaf4 to configlet",
+        "type": "configlet",
+        "action": "add-devices",
+        "configlet": "VLANsTEMP",
+        "apply": false,
+        "devices": [
+            "leaf3"
+        ]
+    }
+]

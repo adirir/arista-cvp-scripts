@@ -27,34 +27,10 @@ provides a generic tools to implement automation workflow
 
 CLI Examples
 ------------
-- Short Update method::
-
-    $ python cvp-configlet-uploader.py -c configlet.examples/VLANs
 
 - Generic method using JSON inputs::
 
     $ python cvp-configlet-uploader.py -j actions.json
-
-Python Examples
----------------
->>> import cvprack
->>> client = CvpClient()
->>> try:
->>>     client.connect([CVP_HOST], CVP_USER, CVP_PASS, 10, CVP_PROTO,
-    CVP_PORT)
->>>     logging.info('Connected to %s', CVP_HOST )
->>> except CvpLoginError, e :
->>>     # If error, then, printout message and quit program
->>>     # If server cannot be reached, then no need to go further
->>>     logging.error('Can\'t connect to %s', CVP_HOST )
->>>     logging.error('Error message is: %s',str(e).replace('\n',' '))
->>>     quit()
->>> logging.info('- Starting working with configlet.examples/VLANs')
->>> my_configlet = CvpConfiglet(cvp_server=client,
-        configlet_file='configlet.examples/VLANs')
->>> logging.info('Start to deploy new version of VLANs configlet')
->>> my_configlet.update_configlet()
->>> my_configlet.deploy_bulk(at=None)
 
 WARNING
 -------
@@ -132,17 +108,17 @@ def action_update(configlet_def, parameters):
     # Create an HTTP session to the CVP server
     client = connect_to_cvp(parameters)
 
-    logging.info('*************')
-    logging.info('Starting working with %s', configlet_def['configlet'])
+    logging.info('---')
+    logging.info('* start working with %s', configlet_def['configlet'])
     my_configlet = CvpConfiglet(cvp_server=client,
                                 configlet_file=configlet_def['configlet'])
 
     if my_configlet.on_cvp():
-        logging.info('Start to deploy new version of %s configlet',
+        logging.info(' -> start to deploy new version of %s configlet',
                      configlet_def['configlet'])
         my_configlet.update_configlet()
     else:
-        logging.warning('%s is not configured on CVP server, fallback to ADD method',  # noqa E501
+        logging.warning(' -> %s is not configured on CVP server, fallback to ADD method',  # noqa E501
                         my_configlet.name())
         action_add(configlet_def=configlet_def, parameters=parameters)
 
@@ -151,26 +127,26 @@ def action_update(configlet_def, parameters):
     # or a Change Control should be defined as a next item.
     if 'apply' in configlet_def:
         if configlet_def['apply']:
-            logging.info('configlet is gonna be deployed')
+            logging.info(' -> configlet is gonna be deployed')
             if 'devices' not in configlet_def:
-                logging.info('deploy target is set to all attached devices')
+                logging.info(' -> deploy target is set to all attached devices')
                 my_configlet.deploy_bulk()
             else:
-                logging.info('configlet will be deployed on some devices')
+                logging.info(' -> configlet will be deployed on some devices')
                 cvp_inventory = CvpInventory(client)
                 for device in configlet_def['devices']:
                     dev_inventory = cvp_inventory.get_device_dict(device)
                     if dev_inventory is not None:
-                        logging.info('  > Depoy %s on %s',
+                        logging.info('  -> Deploy %s on %s',
                                      my_configlet.name,
                                      device)
                         my_configlet.deploy(dev_inventory)
         else:
-            logging.warning('deploy option has not been set for the configlet')
-            logging.warning('--> doing nothing')
+            logging.warning(' -> deploy option has not been set for the configlet')
+            logging.warning('   --> doing nothing')
     else:
-        logging.warning('deploy option has not been set for the configlet')
-        logging.warning('--> doing nothing')
+        logging.warning(' -> deploy option has not been set for the configlet')
+        logging.warning('   --> doing nothing')
 
 
 def action_remove_devices(configlet_def, parameters):
@@ -197,22 +173,22 @@ def action_remove_devices(configlet_def, parameters):
     # Create an HTTP session to the CVP server
     client = connect_to_cvp(parameters)
 
-    logging.info('*************')
-    logging.info('Starting working with %s', configlet_def['configlet'])
+    logging.info('---')
+    logging.info('* start working with %s', configlet_def['configlet'])
 
     my_configlet = CvpConfiglet(cvp_server=client,
                                 configlet_name=configlet_def['configlet'])
 
     if my_configlet.on_cvp():
-        logging.info('%s configlet has been found on CVP',
+        logging.info(' -> %s configlet has been found on CVP',
                      configlet_def['configlet'])
         my_configlet.remove_device(devices_hostnames=configlet_def['devices'])
     # Check if configlet must be deployed to devices
     if 'apply' in configlet_def:
         action_apply(configlet_def=configlet_def, my_configlet=my_configlet)
     else:
-        logging.warning('deploy option has not been set for the configlet')
-        logging.warning('--> doing nothing')
+        logging.warning(' -> deploy option has not been set for the configlet')
+        logging.warning('   --> doing nothing')
     return True
 
 
@@ -240,14 +216,14 @@ def action_add_devices(configlet_def, parameters):
     # Create an HTTP session to the CVP server
     client = connect_to_cvp(parameters)
 
-    logging.info('*************')
-    logging.info('Starting working with %s', configlet_def['configlet'])
+    logging.info('---')
+    logging.info('* start working with %s', configlet_def['configlet'])
 
     my_configlet = CvpConfiglet(cvp_server=client,
                                 configlet_name=configlet_def['configlet'])
 
     if my_configlet.on_cvp():
-        logging.info('%s configlet has been found on CVP',
+        logging.info(' -> %s configlet has been found on CVP',
                      configlet_def['configlet'])
         my_configlet.add_device(device_hostnames=configlet_def['devices'])
 
@@ -255,8 +231,8 @@ def action_add_devices(configlet_def, parameters):
     if 'apply' in configlet_def:
         action_apply(configlet_def=configlet_def, my_configlet=my_configlet)
     else:
-        logging.warning('deploy option has not been set for the configlet')
-        logging.warning('--> doing nothing')
+        logging.warning(' -> deploy option has not been set for the configlet')
+        logging.warning('   --> doing nothing')
     return True
 
 
@@ -275,13 +251,15 @@ def action_apply(configlet_def, my_configlet):
         A CvpConfiglet object already instantiated.
             It is used to call deploy_bulk method
     """
+    logging.info('---')
+    logging.info('* start managing deployment')
     if configlet_def['apply']:
-        logging.info('configlet is gonna be deployed')
-        logging.info('deploy target is set to all attached devices')
+        logging.info(' -> configlet is gonna be deployed')
+        logging.info(' -> deploy target is set to all attached devices')
         my_configlet.deploy_bulk()
     else:
-        logging.warning('deploy option has not been set for the configlet')  # noqa E501
-        logging.warning('--> doing nothing')
+        logging.warning(' -> deploy option has not been set for the configlet')  # noqa E501
+        logging.warning('   --> doing nothing')
 
 
 def action_add(configlet_def, parameters):
@@ -309,23 +287,22 @@ def action_add(configlet_def, parameters):
 
     client = connect_to_cvp(parameters)
 
-    logging.info('*************')
-    logging.info('Start working with %s', configlet_def['configlet'])
+    logging.info('---')
+    logging.info('* start working with %s', configlet_def['configlet'])
     my_configlet = CvpConfiglet(cvp_server=client,
                                 configlet_file=configlet_def['configlet'])
-    logging.info('Start to create new configlet: %s',
+    logging.info(' -> start to create new configlet: %s',
                  configlet_def['configlet'])
 
     if my_configlet.on_cvp():
-        logging.warning('%s is already configured on CVP server, fallback to UPDATE method',  # noqa E501
+        logging.warning(' -> %s is already configured on CVP server, fallback to UPDATE method',  # noqa E501
                         my_configlet.name())
         action_update(configlet_def=configlet_def, parameters=parameters)
     else:
         # a list of device must be available to create configlet
         # if list is missing, then we have to break process
         if 'devices' not in configlet_def:
-            logging.error('Configlet has no devices configured,\
-                        cannot create configlet on server')
+            logging.error(' -> ! configlet has no devices configured, cannot create configlet on server')
             return False
 
         # Now create configlet on CVP server
@@ -335,8 +312,8 @@ def action_add(configlet_def, parameters):
     if 'apply' in configlet_def:
         action_apply(configlet_def=configlet_def, my_configlet=my_configlet)
     else:
-        logging.warning('deploy option has not been set for the configlet')
-        logging.warning('--> doing nothing')
+        logging.warning(' -> deploy option has not been set for the configlet')
+        logging.warning('   --> doing nothing')
     return True
 
 
@@ -361,11 +338,11 @@ def action_delete(configlet_def, parameters):
     """
     client = connect_to_cvp(parameters)
 
-    logging.info('*************')
-    logging.info('Start working with %s', configlet_def['configlet'])
+    logging.info('---')
+    logging.info('* start working with %s', configlet_def['configlet'])
     my_configlet = CvpConfiglet(cvp_server=client,
                                 configlet_file=configlet_def['configlet'])
-    logging.info('Start to delete existing configlet: %s',
+    logging.info('* start to delete existing configlet: %s',
                  configlet_def['configlet'])
     my_configlet.delete_configlet()
 
@@ -410,7 +387,8 @@ def action_create_change_control(parameters, data):
 
     """
     client = connect_to_cvp(parameters)
-    logging.info('start change-control creation')
+    logging.info('---')
+    logging.info('* start change-control creation')
     change_control = CvpChangeControl(cvp_server=client,
                                       name=data['name'].replace(' ', '_'))
 
@@ -420,21 +398,21 @@ def action_create_change_control(parameters, data):
     # Check if mandatory values are set.
     # Otherwise load default
     if 'timezone' not in data:
-        logging.debug('Timezone not set in json, using default one: %s',
+        logging.debug('  -> timezone not set in json, using default one: %s',
                       CVP['TZ'])
         data['timezone'] = CVP['TZ']
 
     if 'country' not in data:
-        logging.debug('Country not set in json, using default one: %s',
+        logging.debug('  -> country not set in json, using default one: %s',
                       CVP['COUNTRY'])
         data['country'] = CVP['COUNTRY']
 
     if 'snapid' not in data:
-        logging.debug('Snapshot ID not configured')
+        logging.debug('  -> snapshot ID not configured')
         data['snapid'] = 'None'
 
     if 'apply' in data and data['apply'] is True:
-        logging.info('Scheduling change control to be executed at %s',
+        logging.info(' -> scheduling change control to be executed at %s',
                      data['schedule_at'])
         result = change_control.create(tz=data['timezone'],
                                        country=data['country'],
@@ -443,7 +421,7 @@ def action_create_change_control(parameters, data):
                                        snap_template=data['snapid'],
                                        change_type='Custom', stop_on_error="true")  # noqa E501
     else:
-        logging.info('change control must be executed manually')
+        logging.warning(' -> change control must be executed manually')
         result = change_control.create(tz=data['timezone'],
                                        country=data['country'],
                                        schedule=True,
@@ -451,7 +429,7 @@ def action_create_change_control(parameters, data):
                                        change_type='Custom', stop_on_error="true")  # noqa E501
 
     if result is not None:
-        logging.info('!change-control creation is %s (id %s)', result['data'], result['ccId'])  # noqa E501
+        logging.info(' -> change-control creation is %s (id %s)', result['data'], result['ccId'])  # noqa E501
 
 
 # Main part of the script
@@ -500,61 +478,46 @@ if __name__ == '__main__':
     logging.debug('  > Proto is %s', CVP['PROTO'])
     print '\n--------------------\n'
 
-    # If OPTIONS.configlet is defined we assume user wants to make short update
-    # Then we don't care about JSON
-    # If OPTIONS.configlet is not defined,
-    # Then, OPTIONS.json MUST be configured
-    if OPTIONS.configlet is not None:
-        CONFIGLET = dict()
-        CONFIGLET['name'] = 'Short path update'
-        CONFIGLET['configlet'] = OPTIONS.configlet
-        CONFIGLET['action'] = 'update'
-        logging.info('task %s is going to update %s',
-                     CONFIGLET['name'],
-                     CONFIGLET['configlet'])
-        action_update(configlet_def=CONFIGLET, parameters=OPTIONS)
-
-    else:
-        # Parse actions defined in OPTIONS.json
-        # Based on action field, script will execute different
-        # set of actions
-        LIST_ACTIONS = config_read(config_file=OPTIONS.json)
-        for ACTION in LIST_ACTIONS:
-            if 'type' not in ACTION:
-                logging.critical('task %s does not have type defined - skipping', ACTION['name'])  # noqa E501
-                break
-            if 'action' in ACTION and ACTION['type'] == 'configlet':
-                if ACTION['action'] == 'add':
-                    logging.info('configlet %s is going to be created %s',
-                                 ACTION['name'],
-                                 ACTION['configlet'])
-                    action_add(configlet_def=ACTION, parameters=OPTIONS)
-                elif ACTION['action'] == 'delete':
-                    logging.info('configlet %s is going to be deleted %s',
-                                 ACTION['name'],
-                                 ACTION['configlet'])
-                    action_delete(configlet_def=ACTION, parameters=OPTIONS)
-                elif ACTION['action'] == 'update':
-                    logging.info('configlet %s is going to be updated %s',
-                                 ACTION['name'],
-                                 ACTION['configlet'])
-                    action_update(configlet_def=ACTION, parameters=OPTIONS)
-                elif ACTION['action'] == 'remove-devices':
-                    logging.info('configlet %s is going to be removed from devices',
-                                 ACTION['name'])
-                    action_remove_devices(configlet_def=ACTION, parameters=OPTIONS)
-                elif ACTION['action'] == 'add-devices':
-                    logging.info('configlet %s is going to be added to devices',
-                                 ACTION['name'])
-                    action_add_devices(configlet_def=ACTION, parameters=OPTIONS)
-                else:
-                    logging.error('Unsupported action.\
-                                   Please use add / delete / update only')
-                print '\n--------------------\n'
-            elif ACTION['type'] == 'change-control':
-                logging.info('Implementation in progress -- expect some issues')
-                action_create_change_control(OPTIONS, ACTION)
+    # Parse actions defined in OPTIONS.json
+    # Based on action field, script will execute different
+    # set of actions
+    LIST_ACTIONS = config_read(config_file=OPTIONS.json)
+    for ACTION in LIST_ACTIONS:
+        if 'type' not in ACTION:
+            logging.critical('task %s does not have type defined - skipping', ACTION['name'])  # noqa E501
+            break
+        if 'action' in ACTION and ACTION['type'] == 'configlet':
+            if ACTION['action'] == 'add':
+                logging.info('configlet %s is going to be created %s',
+                                ACTION['name'],
+                                ACTION['configlet'])
+                action_add(configlet_def=ACTION, parameters=OPTIONS)
+            elif ACTION['action'] == 'delete':
+                logging.info('configlet %s is going to be deleted %s',
+                                ACTION['name'],
+                                ACTION['configlet'])
+                action_delete(configlet_def=ACTION, parameters=OPTIONS)
+            elif ACTION['action'] == 'update':
+                logging.info('configlet %s is going to be updated %s',
+                                ACTION['name'],
+                                ACTION['configlet'])
+                action_update(configlet_def=ACTION, parameters=OPTIONS)
+            elif ACTION['action'] == 'remove-devices':
+                logging.info('configlet %s is going to be removed from devices',
+                                ACTION['name'])
+                action_remove_devices(configlet_def=ACTION, parameters=OPTIONS)
+            elif ACTION['action'] == 'add-devices':
+                logging.info('configlet %s is going to be added to devices',
+                                ACTION['name'])
+                action_add_devices(configlet_def=ACTION, parameters=OPTIONS)
             else:
-                logging.warning('task is not supported -- skipping')
-            logging.info('Wait 10 sec before next action')
-            time.sleep(10)
+                logging.error('Unsupported action.\
+                                Please use add / delete / update only')
+            print '\n--------------------\n'
+        elif ACTION['type'] == 'change-control':
+            logging.info('Implementation in progress -- expect some issues')
+            action_create_change_control(OPTIONS, ACTION)
+        else:
+            logging.warning('task is not supported -- skipping')
+        logging.info('Wait 10 sec before next action')
+        time.sleep(10)

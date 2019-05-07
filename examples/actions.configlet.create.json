@@ -1,0 +1,22 @@
+[
+    {
+        "name": "new CVP Configlet",
+        "type": "configlet",
+        "action": "add",
+        "configlet": "examples/VLANsTEMP",
+        "apply": false,
+        "devices": [
+            "leaf1",
+            "leaf2",
+            "leaf3"
+        ]
+    },
+    {
+        "name": "cc1",
+        "type": "change-control",
+        "snapid": "snapshotTemplate_9_4694793526491",
+        "apply": true,
+        "timzone": "Europe/Paris",
+        "country": "France"
+    }
+]
