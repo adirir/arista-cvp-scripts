@@ -14,7 +14,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../cvprac_abstraction'))
+sys.path.insert(0, os.path.abspath('../'))
 import cvprac_abstraction
 
 # -- RTD woarkaround for sphinx-apidoc ---------------------------------------
