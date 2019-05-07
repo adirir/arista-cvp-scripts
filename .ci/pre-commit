@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# Create a link to this file at .git/hooks/pre-commit to
+# force PEP8 validation prior to committing:
+#
+# $ ln -s -f ../../.ci/pre-commit .git/hooks/pre-commit
+#
+# Ignored violations:
+#
+#   E722: Do not use bare except
+#   E501: Line too long
+
+exec 1>&2
+
+echo "Validating PEP8 compliance..."
+python -m flake8 --statistics --count --ignore E722,E501 bin/*.py

@@ -1,0 +1,21 @@
+[
+    {
+        "name": "Create container",
+        "type": "container",
+        "action": "create",
+        "container": "Test Container",
+        "parent": "Tenant"
+    },
+    {
+        "name": "Change CVX to EVPN",
+        "type": "container",
+        "action": "attach-device",
+        "container": "Test Container",
+        "apply": true,
+        "devices": [
+            "leaf1",
+            "leaf2",
+            "cvx01"
+        ]
+    }
+]
