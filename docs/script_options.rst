@@ -35,7 +35,7 @@ In your shell, execute following commands:
    export CVP_TZ=France
    export CVP_COUNTRY='France'
 
-A script `example <https://github.com/titom73/configlet-cvp-uploader/blob/master/env.variables>`__ is available in the repository
+A script `example <https://github.com/titom73/arista-cvp-scripts/blob/master/env.variables>`__ is available in the repository
 for informational purpose
 
    It can be configured in your ``~/.bashrc`` or in VARIABLES of a CI/CD

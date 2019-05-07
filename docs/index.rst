@@ -13,12 +13,27 @@ Welcome to CVP Uploader's documentation!
    README.rst
    install.rst
    script_options.rst
+
+.. include:: README.rst
+
+How-To and use-cases:
+---------------------
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
    configlet_usages.rst
    container_usages.rst
 
-   modules.rst
+Code documentation
+------------------
 
-.. include:: README.rst
+.. toctree::
+   :maxdepth: 3
+   :caption: Contents:
+
+   modules.rst
 
 Indices and tables
 ==================
