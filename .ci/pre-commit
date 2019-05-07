@@ -13,4 +13,7 @@
 exec 1>&2
 
 echo "Validating PEP8 compliance..."
+echo "  - Script validation"
 python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
+echo "  - Module validation"
+python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py

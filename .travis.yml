@@ -1,0 +1,22 @@
+---
+language: python
+python:
+  - "2.7"
+# command to install dependencies
+jobs:
+  include:
+    - stage: code-quality
+      install:
+        - pip install -r requirements.txt
+        - pip install flake8
+      # command to run tests
+      script:
+        - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
+        - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
+    - stage: code-load
+      install:
+        - pip install -r requirements.txt
+      # command to run tests
+      script: 
+        - python bin/cvp-configlet-manager.py -h
+        - python bin/cvp-container-manager.py -h
