@@ -61,7 +61,7 @@ class CvpConfiglet(object):
     on_cvp()
         Inform about configlet available on CVP
 
-    Note::
+    Note:
     ------
 
     This class use calls to ``cvprac`` to get and push data to CVP server.

@@ -29,7 +29,7 @@ CLI Examples
 
 - Generic method using JSON inputs::
 
-    $ python cvp-configlet-uploader.py -j actions.json
+    $ python cvp-configlet-manager.py -j actions.json
 
 WARNING
 -------

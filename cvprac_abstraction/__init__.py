@@ -35,7 +35,7 @@ def load_constant(key_name, default='UNSET', verbose=False):
 
     >>> USERNAME = load_constant(key_name='USERNAME_1', default='myUser')
     >>> print USERNAME
-    myUsername
+    >>> myUsername
 
     Parameters
     ----------

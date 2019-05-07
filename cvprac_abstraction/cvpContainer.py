@@ -27,12 +27,10 @@ class CvpContainer(object):
     run_pending()
         Execute all pengind tasks created by cvpContainer object.
 
-    Note::
-    ------
+    Note
+    ----
 
     This class use calls to ``cvprac`` to get and push data to CVP server.
-
-    
 
     """
     def __init__(self, name, cvp_server):
@@ -104,6 +102,7 @@ class CvpContainer(object):
         Returns
         -------
         None
+            Return Nothing
 
         """
         logging.info('start process to delete container %s', self._name)
@@ -215,8 +214,8 @@ class CvpContainer(object):
         timeout : int
             optional - Timeout to wait for before assuming task failed
 
-        Returns:
-        --------
+        Returns
+        -------
         dict
             Last status message collected from the server
 
@@ -313,6 +312,10 @@ class CvpContainer(object):
         Run tasks created when you change container.
         It does not manage tasks from other objects.
 
+            >>> status = my_container.run_pending()
+            >>> print status
+            [{id:200, status: completed}, {id:201, status: completed}]
+
         Parameters
         ----------
         task_timeout : int, optional
@@ -321,8 +324,8 @@ class CvpContainer(object):
         Returns
         -------
         list()
-            A list of dictionary where every entry is result of a task::
-                [{id:200, status: completed}, {id:201, status: completed}]
+            A list of dictionary where every entry is result of a task:
+
         """
         logging.info('>---')
         logging.info('run pending tasks to related to container %s', self._name)
