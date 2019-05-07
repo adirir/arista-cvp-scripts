@@ -1,9 +1,9 @@
-.. image:: https://img.shields.io/github/license/titom73/configlet-cvp-uploader .svg
-  :target: https://github.com/titom73/configlet-cvp-uploader/blob/master/LICENSE
+.. image:: https://img.shields.io/github/license/titom73/arista-cvp-scripts .svg
+  :target: https://github.com/titom73/arista-cvp-scripts/blob/master/LICENSE
   :alt: License Model
 
-.. image:: https://readthedocs.org/projects/arista-cvp-configlet-uploader/badge/?version=latest
-  :target: https://arista-cvp-configlet-uploader.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/arista-cvp-scripts/badge/?version=latest
+  :target: https://arista-cvp-scripts.readthedocs.io/en/latest/?badge=latest
   :alt: Documentation Status
 
 .. image:: https://travis-ci.org/titom73/configlet-cvp-uploader.svg?branch=master
