@@ -6,8 +6,8 @@
   :target: https://arista-cvp-scripts.readthedocs.io/en/latest/?badge=latest
   :alt: Documentation Status
 
-.. image:: https://travis-ci.org/titom73/configlet-cvp-uploader.svg?branch=master
-    :target: https://travis-ci.org/titom73/configlet-cvp-uploader
+.. image:: https://travis-ci.org/titom73/arista-cvp-scripts.svg?branch=master
+    :target: https://travis-ci.org/titom73/arista-cvp-scripts
     :alt: CI Status
 
 
