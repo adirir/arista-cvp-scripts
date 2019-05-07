@@ -4,11 +4,7 @@ How to use configilet uploader
 
 Script can be use to manage configlet on a CloudVision (CVP) server
 
-
-Use json file for bulk actions
--------------------------------
-
-Another way to manage all actions to run on a CVP server is by using a JSON file to list a set of actions. This json file is provided to the script by using ```-json``` trigger on CLI.
+To manage all actions to run on a CVP server is by using a JSON file to list a set of actions. This json file is provided to the script by using ```-json``` trigger on CLI.
 
 JSON file is an array of entries where every single entry in JSON file describe a task to run:
 
@@ -36,7 +32,7 @@ Current version of code support all the actions listed below:
 
 
 Create a configlet with add task
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 To create a new configlet on CVP server, ``JSON`` file shall have the following structure:
 
@@ -66,7 +62,7 @@ Where **keys** have description below:
 
 
 Update content of a configlet with update task
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 To update an existing configlet on CVP server, ``JSON`` file shall have the following structure:
 
@@ -93,7 +89,7 @@ Where **keys** have description below:
 
 
 Delete a configlet with delete task
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 To delete an existing configlet on CVP server, ``JSON`` file shall have the following structure:
 
@@ -117,7 +113,7 @@ Where **keys** have description below:
 - ``devices``: An array of devices hostname configured on CVP where to attache configlet.
 
 Remove a device from configlet with remove-device task
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------
 
 To remove a device from a configlet on CVP server, ``JSON`` file shall have the following structure:
 
@@ -144,7 +140,7 @@ Where **keys** have description below:
 - ``devices``: An array of devices hostname to remove from the configlet.
 
 Attach device to a configlet with add-device task
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------
 
 To attach a device or a list of devices to a configlet on CVP server, ``JSON`` file shall have the following structure:
 
@@ -173,7 +169,7 @@ Where **keys** have description below:
 
 
 Change-control building
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 To delete an existing configlet on CVP server, ``JSON`` file shall have the following structure:
 

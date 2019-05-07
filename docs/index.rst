@@ -14,6 +14,7 @@ Welcome to CVP Uploader's documentation!
    install.rst
    script_options.rst
    configlet_usages.rst
+   container_usages.rst
 
    modules.rst
 
