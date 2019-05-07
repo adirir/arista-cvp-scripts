@@ -1,4 +1,4 @@
-image: inetsix/runner-python:dind
+image: python:2.7-alpine3.9
 
 stages:
   - analysis
@@ -13,7 +13,7 @@ stages:
 
 .cvp_python: &cvp_tasks
   before_script:
-    - pip install git+https://github.com/titom73/arista-cvp-scriptsgit
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
 
 
@@ -28,7 +28,7 @@ code:linting:
 code:install:
   stage: test
   script:
-    - pip install git+https://github.com/titom73/arista-cvp-scriptsgit
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
     - python bin/cvp-configlet-manager.py -h
     - python bin/cvp-container-manager.py -h
