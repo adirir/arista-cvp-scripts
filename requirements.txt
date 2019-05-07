@@ -6,10 +6,10 @@ cvprac==1.0.1
 et-xmlfile==1.0.1
 idna==2.8
 jdcal==1.4
-Jinja2==2.10
+Jinja2>=2.10.1
 jxmlease==1.0.1
 MarkupSafe==1.1.1
 netaddr==0.7.19
 prettytable==0.7.2
 requests==2.21.0
-urllib3==1.24.1
+urllib3>=1.24.2
