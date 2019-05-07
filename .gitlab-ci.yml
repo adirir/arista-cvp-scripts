@@ -1,0 +1,34 @@
+image: inetsix/runner-python:dind
+
+stages:
+  - analysis
+  - test
+  - diff
+  - push
+  - clean
+
+#######################
+# Template management #
+#######################
+
+.cvp_python: &cvp_tasks
+  before_script:
+    - pip install git+https://github.com/titom73/arista-cvp-scriptsgit
+    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
+
+
+code:linting:
+  stage: analysis
+  before_script:
+    - pip install flake8
+  script:
+    - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
+    - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
+
+code:install:
+  stage: test
+  script:
+    - pip install git+https://github.com/titom73/arista-cvp-scriptsgit
+    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
+    - python bin/cvp-configlet-manager.py -h
+    - python bin/cvp-container-manager.py -h
