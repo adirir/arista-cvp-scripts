@@ -1,5 +1,5 @@
-How to use configilet uploader
-==============================
+How to use container manager
+============================
 
 Script uses a JSON file to describe list of actions to run on CloudVision server. This json file is provided to the script by using ```-json``` trigger on CLI.
 

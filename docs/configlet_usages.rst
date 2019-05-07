@@ -1,5 +1,5 @@
-How to use configilet uploader
-==============================
+How to use configilet manager
+=============================
 
 
 Script can be use to manage configlet on a CloudVision (CVP) server

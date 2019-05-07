@@ -48,7 +48,7 @@ Options from the CLI
 
 .. code:: shell
 
-   $ cvp-configlet-uploader -h
+   $ cvp-configlet-manager-h
 
    usage: cvp-configlet-uploader.py [-h] [-v] [-c CONFIGLET] [-u USERNAME]
                                [-p PASSWORD] [-s CVP] [-d DEBUG_LEVEL]

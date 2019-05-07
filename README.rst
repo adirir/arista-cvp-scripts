@@ -68,7 +68,7 @@ Getting Started
 
 .. code:: shell
 
-   $ pip install ...
+   $ pip install git+https://github.com/titom73/arista-cvp-scripts.git
 
    # Update your credential information
    $ cat <<EOT > env.variables.sh

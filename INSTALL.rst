@@ -12,7 +12,7 @@ Installation with PIP
 .. code:: shell
 
 
-   $ pip install git+https://github.com/titom73/configlet-cvp-uploader.git
+   $ pip install git+https://github.com/titom73/arista-cvp-scripts.git
 
    # Update your credential information
    $ cat <<EOT > env.variables.sh
@@ -39,7 +39,7 @@ It is highly recommended to use Python virtual environment for testing
 
 .. code:: shell
 
-   $ git clone https://github.com/titom73/configlet-cvp-uploader.git
+   $ git clone https://github.com/titom73/arista-cvp-scripts.git
 
    $ python setup.py
 
