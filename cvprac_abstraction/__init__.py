@@ -8,7 +8,7 @@ from cvprac.cvp_client_errors import CvpLoginError
 # from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 # Code version
-__version__ = '0.1a'
+__version__ = '0.2'
 
 # Author information
 __author__ = 'Thomas Grimonet'
@@ -72,6 +72,7 @@ CVP['PROTO'] = load_constant(key_name='CVP_PROTO', default='https')
 CVP['USER'] = load_constant(key_name='CVP_USER', default='username')
 CVP['PASS'] = load_constant(key_name='CVP_PASS', default='password')
 CVP['TZ'] = load_constant(key_name='CVP_TZ', default='France')
+CVP['CONFIGLET_BACKUP'] = load_constant(key_name='CVP_BACKUP', default='configlets_backup')
 CVP['COUNTRY'] = load_constant(key_name='CVP_COUNTRY',
                                default='France')
 LOG_LEVEL = load_constant(key_name='LOG_LEVEL', default='info')
@@ -129,7 +130,7 @@ def config_read(config_file="actions.json"):
         return None
 
 
-def connect_to_cvp(parameters):
+def connect_to_cvp(parameters, log_level='WARNING'):
     """Create a CVP connection.
 
     parameters option should at least contain following elements:
@@ -141,6 +142,8 @@ def connect_to_cvp(parameters):
     ----------
     parameters : dict
         Object with all information to create connection
+    log_level : str
+        Log level to use for CvpClient logger. Default is WARNING.
 
     Returns
     -------
@@ -148,15 +151,15 @@ def connect_to_cvp(parameters):
         cvp client object
 
     """
-    client = CvpClient()
+    client = CvpClient(log_level=log_level)
     try:
         client.connect([parameters.cvp], parameters.username,
                        parameters.password, 10, CVP['PROTO'], CVP['PORT'])
-        logging.info('Connected to %s', CVP['HOST'])
+        logging.info('* connected to %s', CVP['HOST'])
     except CvpLoginError, e:
         # If error, then, printout message and quit program
         # If server cannot be reached, then no need to go further
-        logging.error('Can\'t connect to %s', parameters.cvp)
-        logging.error('Error message is: %s', str(e).replace('\n', ' '))
+        logging.error('! can\'t connect to %s', parameters.cvp)
+        logging.error('! error message is: %s', str(e).replace('\n', ' '))
         quit()
     return client

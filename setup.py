@@ -14,11 +14,12 @@ with open("README.rst", "r") as fh:
 # Rename Scripts to sync with original name
 shutil.copyfile('bin/cvp-container-manager.py', 'bin/cvp-container-manager')
 shutil.copyfile('bin/cvp-configlet-manager.py', 'bin/cvp-configlet-manager')
+shutil.copyfile('bin/cvp-configlet-backup.py', 'bin/cvp-configlet-backup')
 
 setup(
     name="cvp-tools-scripts",
     version=cvprac_abstraction.__version__,
-    scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager"],
+    scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager",  "bin/cvp-configlet-backup"],
     packages=['cvprac_abstraction'],
     python_requires=">=2.7",
     install_requires=REQUIRED_PACKAGES,
