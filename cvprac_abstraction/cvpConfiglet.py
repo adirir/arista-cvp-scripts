@@ -61,8 +61,27 @@ class CvpConfiglet(object):
     on_cvp()
         Inform about configlet available on CVP
 
-    Note:
-    ------
+    Example
+    -------
+
+        >>> from cvprac_abstraction import CVP
+        >>> from cvprac_abstraction import connect_to_cvp
+        >>> from cvprac_abstraction.cvpConfiglet import CvpConfiglet
+        >>> 
+        >>> parameters['cvp'] = '127.0.0.1'
+        >>> parameters['username'] = 'arista'
+        >>> parameters['password'] = 'arista'
+        >>> 
+        >>> client = connect_to_cvp(parameters)
+        >>> 
+        >>> my_configlet = CvpConfiglet(cvp_server=client,configlet_file='/path/to/configlet')
+        >>> 
+        >>> my_configlet.update_configlet()
+        >>> 
+        >>> my_configlet.deploy_bulk()
+
+    Note
+    ----
 
     This class use calls to ``cvprac`` to get and push data to CVP server.
 
