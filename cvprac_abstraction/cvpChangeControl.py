@@ -32,22 +32,21 @@ class CvpChangeControl(object):
         >>> from cvprac_abstraction import CVP
         >>> from cvprac_abstraction import connect_to_cvp
         >>> from cvprac_abstraction.cvpConfiglet import CvpChangeControl
-        >>> 
+        >>>
         >>> parameters['cvp'] = '127.0.0.1'
         >>> parameters['username'] = 'arista'
         >>> parameters['password'] = 'arista'
-        >>> 
+        >>>
         >>> client = connect_to_cvp(parameters)
-        >>> 
+        >>>
         >>> change_control = CvpChangeControl(cvp_server=client, name='MyChanegControl')
-        >>> 
         >>> result = change_control.create(tz=timezone,
                                            country='FR',
                                            schedule=True,
                                            schedule_at='2019-03-01-12h00',
                                            snap_template="snapshotTemplate_9_4694793526491",
                                            change_type='Custom', stop_on_error="true")
-        >>> 
+        >>>
 
     Warnings
     --------

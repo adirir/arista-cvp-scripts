@@ -33,15 +33,15 @@ class CvpContainer(object):
         >>> from cvprac_abstraction import CVP
         >>> from cvprac_abstraction import connect_to_cvp
         >>> from cvprac_abstraction.cvpConfiglet import CvpContainer
-        >>> 
+        >>>
         >>> parameters['cvp'] = '127.0.0.1'
         >>> parameters['username'] = 'arista'
         >>> parameters['password'] = 'arista'
-        >>> 
+        >>>
         >>> client = connect_to_cvp(parameters)
-        >>> 
+        >>>
         >>> container = CvpContainer(name='My New Container', cvp_server=client)
-        >>> 
+        >>>
         >>> container.create(parent_name='My Root Container')
 
     Note

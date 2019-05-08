@@ -7,6 +7,50 @@ from cvprac.cvp_client_errors import CvpLoginError
 # # Import to optionnaly disable HTTPS cert validation
 # from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
+"""Python class providing an abstraction layer to ``cvprac``.
+
+    cvprac is a python module to interact with CloudVision Portal server.
+    Because this module does not implement class per function,
+    ``cvprac_abstraction`` provides a set of class per function.
+
+    **List of public available methods:**
+
+    Class provided by this module
+    -----------------------------
+
+    CvpInventory(object)
+        Get complete inventory from CVP and expose some functions to get data.
+    CvpConfiglet(object)
+        Class to provide generic method to manage CVP configlet.
+    CvpChangeControl(object)
+        Change-control class to provide generic method for CVP CC mechanism
+    CvpContainer(object)
+        Centralize an abstraction layer of CVPRAC to manage actions related to container.
+
+    Example (creating a change control)
+    -----------------------------------
+
+        >>> from cvprac_abstraction import CVP
+        >>> from cvprac_abstraction import connect_to_cvp
+        >>> from cvprac_abstraction.cvpConfiglet import CvpChangeControl
+        >>>
+        >>> parameters['cvp'] = '127.0.0.1'
+        >>> parameters['username'] = 'arista'
+        >>> parameters['password'] = 'arista'
+        >>>
+        >>> client = connect_to_cvp(parameters)
+        >>>
+        >>> change_control = CvpChangeControl(cvp_server=client, name='MyChanegControl')
+        >>> result = change_control.create(tz=timezone,
+                                           country='FR',
+                                           schedule=True,
+                                           schedule_at='2019-03-01-12h00',
+                                           snap_template="snapshotTemplate_9_4694793526491",
+                                           change_type='Custom', stop_on_error="true")
+        >>>
+"""
+
+
 # Code version
 __version__ = '0.2'
 
