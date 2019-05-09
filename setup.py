@@ -1,7 +1,6 @@
 import os
 import shutil
 from setuptools import setup
-import cvprac_abstraction
 
 # Load list of requirements from req file
 with open('requirements.txt') as f:
@@ -18,12 +17,12 @@ shutil.copyfile('bin/cvp-configlet-backup.py', 'bin/cvp-configlet-backup')
 
 setup(
     name="cvp-tools-scripts",
-    version=cvprac_abstraction.__version__,
+    version='0.2',
     scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager",  "bin/cvp-configlet-backup"],
     packages=['cvprac_abstraction'],
     python_requires=">=2.7",
     install_requires=REQUIRED_PACKAGES,
-    #url="https://github.com/titom73/arista-cvp-container-management",
+    url="https://github.com/titom73/arista-cvp-scripts",
     license="BSD",
     author="Thomas Grimonet",
     author_email="tom@inetsix.net",
