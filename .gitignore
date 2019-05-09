@@ -173,3 +173,7 @@ configlet.examples/*
 env.*
 cvprac/*
 dev*
+# Ignore renamed file with setup.py
+bin/cvp-configlet-manager
+bin/cvp-container-manager
+bin/cvp-configlet-backup
