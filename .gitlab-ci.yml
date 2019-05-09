@@ -3,19 +3,15 @@ image: inetsix/runner-python:2-alpine
 stages:
   - analysis
   - test
-  - diff
-  - push
-  - clean
 
 #######################
 # Template management #
 #######################
 
-.cvp_python: &cvp_tasks
-  before_script:
-    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
-
+# .cvp_python: &cvp_tasks
+#   before_script:
+#     - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+#     - pip install git+https://github.com/aristanetworks/cvprac.git@develop
 
 code:linting:
   stage: analysis
@@ -25,10 +21,18 @@ code:linting:
     - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
     - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
 
-code:install:
+code:dependencies:
   stage: test
   script:
     - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-    - pip install git+https://github.com/aristanetworks/cvprac.git@develop
     - python bin/cvp-configlet-manager.py -h
     - python bin/cvp-container-manager.py -h
+    - python bin/cvp-configlet-backup.py -h
+  
+code:installation:
+  stage: test
+  script:
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+    - cvp-configlet-manager -h
+    - cvp-container-manager -h
+    - cvp-configlet-backup -h

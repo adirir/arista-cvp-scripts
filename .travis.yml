@@ -21,3 +21,11 @@ jobs:
         - pip install git+https://github.com/titom73/arista-cvp-scripts.git
         - python bin/cvp-configlet-manager.py -h
         - python bin/cvp-container-manager.py -h
+        - python bin/cvp-configlet-backup.py -h
+    - stage: installation
+      # command to run tests
+      script: 
+        - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+        - cvp-configlet-manager -h
+        - cvp-container-manager -h
+        - cvp-configlet-backup -h
