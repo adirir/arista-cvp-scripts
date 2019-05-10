@@ -31,7 +31,7 @@ if __name__ == '__main__':
                         help='Verbose level (debug / info / warning / error / critical)',
                         type=str, default=LOG_LEVEL)
     PARSER.add_argument('-b', '--backup',
-                        help='File with list of actions to execute)',
+                        help='Backup folder to save configlets. Default is ${CVP_BACKUP}',
                         type=str, default=CVP['CONFIGLET_BACKUP'])
     OPTIONS = PARSER.parse_args()
 
