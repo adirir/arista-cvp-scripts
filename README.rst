@@ -9,7 +9,9 @@
 .. image:: https://travis-ci.org/titom73/arista-cvp-scripts.svg?branch=master
     :target: https://travis-ci.org/titom73/arista-cvp-scripts
     :alt: CI Status
-
+    
+.. image:: https://img.shields.io/github/languages/top/titom73/arista-cvp-scripts.svg   
+     :alt: GitHub top language
 
 Arista Cloudvision Portal Python scripts
 ========================================
