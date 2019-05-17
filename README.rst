@@ -2,6 +2,10 @@
     :target: https://github.com/titom73/arista-cvp-scripts/blob/master/LICENSE
     :alt: License Model
 
+.. image:: https://img.shields.io/github/languages/top/titom73/arista-cvp-scripts.svg
+    :target: https://github.com/titom73/arista-cvp-scripts/
+    :alt: GitHub top language
+
 .. image:: https://readthedocs.org/projects/arista-cvp-scripts/badge/?version=latest
     :target: https://arista-cvp-scripts.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
