@@ -69,7 +69,7 @@ if __name__ == '__main__':
     for configlet in configlets_list['data']:
         logging.info(' -> exporting configlet %s', configlet['name'])
         # Get a file object with write permission.
-        file_object = open("configlet-" + configlet['name'].replace(' ','-') + ".json", 'w')
+        file_object = open("configlet-" + configlet['name'].replace(' ', '-') + ".json", 'w')
         # Save dict data into the JSON file.
         json.dump(configlet, file_object, indent=4, sort_keys=True)
     logging.info('* backup complete. Configlets have been saved in %s', CVP['CONFIGLET_BACKUP'])
