@@ -197,8 +197,8 @@ def connect_to_cvp(parameters, log_level='WARNING'):
     """
     client = CvpClient(log_level=log_level)
     try:
-        client.connect([parameters.cvp], parameters.username,
-                       parameters.password, 10, CVP['PROTO'], CVP['PORT'])
+        client.connect(nodes=[parameters.cvp], username=parameters.username,
+                       password=parameters.password, connect_timeout=10, protocol=CVP['PROTO'], port=CVP['PORT'])
         logging.info('* connected to %s', CVP['HOST'])
     except CvpLoginError, e:
         # If error, then, printout message and quit program
