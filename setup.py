@@ -17,8 +17,8 @@ shutil.copyfile('bin/cvp-configlet-backup.py', 'bin/cvp-configlet-backup')
 
 setup(
     name="cvp-tools-scripts",
-    version='0.2',
-    scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager",  "bin/cvp-configlet-backup"],
+    version='0.2.1',
+    scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager", "bin/cvp-configlet-backup"],
     packages=['cvprac_abstraction'],
     python_requires=">=2.7",
     install_requires=REQUIRED_PACKAGES,
@@ -35,5 +35,11 @@ setup(
         "Programming Language :: Python :: 2.7",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
+        'Environment :: Console',
+        'Intended Audience :: Information Technology',
+        'Intended Audience :: Telecommunications Industry',
+        'Natural Language :: English',
+        'Topic :: Internet :: WWW/HTTP :: WSGI',
+        'Topic :: System :: Networking'
     ]
 )
