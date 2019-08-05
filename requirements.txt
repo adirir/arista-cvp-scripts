@@ -2,7 +2,6 @@ certifi==2018.11.29
 chardet==3.0.4
 colorama==0.4.1
 colorful==0.3.7
-cvprac==1.0.1
 et-xmlfile==1.0.1
 idna==2.8
 jdcal==1.4
