@@ -60,7 +60,7 @@ Known Issues
 ~~~~~~~~~~~~
 
 Due to a change in CVP API, change-control needs to get snapshot referenced per
-task. Current version of ``cvprack`` does not support it in version 1.0.1
+task. Current version of ``cvprack`` does not support it in version 1.0. (Issue #75)
 
 Fix is available in develop version. To install development version, use pip::
 
