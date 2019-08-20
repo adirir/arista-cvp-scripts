@@ -13,12 +13,13 @@ with open("README.rst", "r") as fh:
 # Rename Scripts to sync with original name
 shutil.copyfile('bin/cvp-container-manager.py', 'bin/cvp-container-manager')
 shutil.copyfile('bin/cvp-configlet-manager.py', 'bin/cvp-configlet-manager')
+shutil.copyfile('bin/cvp-task-manager.py', 'bin/cvp-task-manager')
 shutil.copyfile('bin/cvp-configlet-backup.py', 'bin/cvp-configlet-backup')
 
 setup(
     name="cvp-tools-scripts",
-    version='0.2.1',
-    scripts=["bin/cvp-container-manager", "bin/cvp-configlet-manager", "bin/cvp-configlet-backup"],
+    version='0.3',
+    scripts=["bin/cvp-task-manager", "bin/cvp-container-manager", "bin/cvp-configlet-manager", "bin/cvp-configlet-backup"],
     packages=['cvprac_abstraction'],
     python_requires=">=2.7",
     install_requires=REQUIRED_PACKAGES,
@@ -26,7 +27,7 @@ setup(
     license="BSD",
     author="Thomas Grimonet",
     author_email="tom@inetsix.net",
-    description="Tool to manage CVP server using APIs and cvprac lib",
+    description="Tools to manage CVP server using APIs and cvprac lib",
     long_description=LONG_DESCRIPTION,
     zip_safe=False,
     classifiers=[

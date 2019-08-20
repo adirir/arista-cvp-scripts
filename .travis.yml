@@ -22,6 +22,8 @@ jobs:
         - python bin/cvp-configlet-manager.py -h
         - python bin/cvp-container-manager.py -h
         - python bin/cvp-configlet-backup.py -h
+        - python bin/cvp-task-manager.py -h
+
     - stage: installation
       # command to run tests
       script: 
@@ -29,3 +31,4 @@ jobs:
         - cvp-configlet-manager -h
         - cvp-container-manager -h
         - cvp-configlet-backup -h
+        - cvp-task-manager -h

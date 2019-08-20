@@ -28,6 +28,7 @@ code:dependencies:
     - python bin/cvp-configlet-manager.py -h
     - python bin/cvp-container-manager.py -h
     - python bin/cvp-configlet-backup.py -h
+    - python bin/cvp-task-manager.py -h
   
 code:installation:
   stage: test
@@ -36,3 +37,4 @@ code:installation:
     - cvp-configlet-manager -h
     - cvp-container-manager -h
     - cvp-configlet-backup -h
+    - cvp-task-manager -h

@@ -56,6 +56,18 @@ interact using APIs calls between your client and CVP interface.
 -  **Scheduling** change-control.
 -  Collect tasks to attach to change-control.
 
+CloudVision tasks Management
+----------------------------
+
+Generic script to interact with tasks on an `Arista Cloudvision <https://www.arista.com/en/products/eos/eos-cloudvision>`_ server. It is based on `cvprac <https://github.com/aristanetworks/cvprac>`_ library to
+interact using APIs calls between your client and CVP interface.
+
+*Script filename*: ``cvp-task-manager``
+
+**Supported Features**
+
+-  **Execute** All pending tasks
+
 Known Issues
 ~~~~~~~~~~~~
 
@@ -66,6 +78,7 @@ Fix is available in develop version. To install development version, use pip::
 
    $ pip install git+https://github.com/aristanetworks/cvprac.git@develop
 
+> Only required if you want to play with change-control
 
 Getting Started
 ===============
