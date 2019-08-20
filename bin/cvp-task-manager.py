@@ -96,7 +96,7 @@ class CvpTaskManager(object):
         #     {'taskId': '101', 'taskOrder': 1},
         #     {'taskId': '102', 'taskOrder': 2}]
         self._list_changes = list()
-        self._retrieve_tasks()    
+        self._retrieve_tasks()
 
     def _wait_task(self, task_id, timeout=10):
         """Wait for Task execution.
