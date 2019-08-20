@@ -98,7 +98,7 @@ class CvpTaskManager(object):
         self._list_changes = list()
         self._retrieve_tasks()
 
-    def _wait_task(self, task_id, timeout=10):
+    def _wait_task(self, task_id, timeout=0):
         """Wait for Task execution.
 
         As API call is asynchronous, task will run avec after
@@ -112,7 +112,8 @@ class CvpTaskManager(object):
         task_id : str
             ID of the task provided by self._get_task_id()
         timeout : int
-            optional - Timeout to wait for before assuming task failed
+            optional - Timeout to wait for before assuming task failed.
+            If not set, script waits until task has state COMPLETED or FAILED.
 
         Returns:
         --------
@@ -122,15 +123,23 @@ class CvpTaskManager(object):
         """
         state = dict()
         state['taskStatus'] = None
-        loop_timer = 0
-        while str(state['taskStatus']) != 'COMPLETED' and loop_timer < timeout:
-            time.sleep(1)
-            state = self._cvp_server.api.get_task_by_id(int(task_id))
-            logging.debug('  ** Wait for task completion (status: %s) / waiting for %s sec',  # noqa E501
-                          state['taskStatus'],
-                          str(loop_timer))
-            loop_timer += 1
-        return state
+        if timeout > 0:
+            loop_timer = 0
+            while str(state['taskStatus']) != 'COMPLETED' and loop_timer < timeout:  # noqa E501
+                time.sleep(1)
+                state = self._cvp_server.api.get_task_by_id(int(task_id))
+                logging.debug('  ** Wait for task completion (status: %s) / waiting for %s sec',  # noqa E501
+                            state['taskStatus'],
+                            str(loop_timer))
+                loop_timer += 1
+            return state
+        else:
+            while state['taskStatus'] not in ('COMPLETED', 'FAILED'):
+                time.sleep(1)
+                state = self._cvp_server.api.get_task_by_id(int(task_id))
+                logging.debug('  ** Wait for task completion (current status: %s)',  # noqa E501
+                            state['taskStatus'])
+            return state
 
     def _retrieve_tasks(self):
         """Extract tasks from CVP Server.
@@ -212,7 +221,7 @@ class CvpTaskManager(object):
 
 if __name__ == '__main__':
     # Argaparser to load information using CLI
-    PARSER = argparse.ArgumentParser(description="Cloudvision Container Manager",
+    PARSER = argparse.ArgumentParser(description="Cloudvision Tasks Manager",
                                      version=cvprac_abstraction.__version__)
     PARSER.add_argument('-u', '--username',
                         help='Username for CVP', type=str, default=CVP['USER'])
@@ -226,7 +235,7 @@ if __name__ == '__main__':
                         type=str, default=LOG_LEVEL)
     PARSER.add_argument('-t', '--task_timeout',
                         help='Timeout to wait for task execution',
-                        type=int, default=10)
+                        type=int, default=0)
     PARSER.add_argument('-ra', '--run_all',
                         help='Execute all pending tasks on CVP',
                         action='store_true')
