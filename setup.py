@@ -1,6 +1,7 @@
 import os
 import shutil
 from setuptools import setup
+import cvprac_abstraction
 
 # Load list of requirements from req file
 with open('requirements.txt') as f:
@@ -16,9 +17,12 @@ shutil.copyfile('bin/cvp-configlet-manager.py', 'bin/cvp-configlet-manager')
 shutil.copyfile('bin/cvp-task-manager.py', 'bin/cvp-task-manager')
 shutil.copyfile('bin/cvp-configlet-backup.py', 'bin/cvp-configlet-backup')
 
+# Script version
+VERSION = str(cvprac_abstraction.__version__)
+
 setup(
     name="cvp-tools-scripts",
-    version='0.3',
+    version=VERSION,
     scripts=["bin/cvp-task-manager", "bin/cvp-container-manager", "bin/cvp-configlet-manager", "bin/cvp-configlet-backup"],
     packages=['cvprac_abstraction'],
     python_requires=">=2.7",
