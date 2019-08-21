@@ -4,6 +4,7 @@ python:
 jobs:
   include:
   - stage: code-quality
+    name: Ensure code is PEP8 compliant
     install:
     - pip install -r requirements.txt
     - pip install flake8
@@ -11,6 +12,7 @@ jobs:
     - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
     - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
   - stage: code-load
+    name: Test code is correctly loaded
     install:
     - pip install -r requirements.txt
     script:
@@ -20,22 +22,25 @@ jobs:
     - python bin/cvp-configlet-backup.py -h
     - python bin/cvp-task-manager.py -h
   - stage: installation
+    name: Test installation process from original respository
     script:
     - pip install git+https://github.com/titom73/arista-cvp-scripts.git
     - cvp-configlet-manager -h
     - cvp-container-manager -h
     - cvp-configlet-backup -h
     - cvp-task-manager -h
-  - stage: staging-deploy
-    install:
-    - pip install -r requirements.txt
-    - pip install flake8
+  - stage: pypi-deploy
+    name: Push package to pypi servers
     script:
     - echo "deploy to test.pypi.org"
     deploy:
       provider: pypi
       username: titom73
       server: https://test.pypi.org/legacy/
+      skip_existing: true
       password:
-        secure: iRHM43JQTMr4ydy3yXzENVwBsNck1UK3PcNhdyCkfJxmMa4vhYZ2bgWOQWx4zJyPg6n63kuWIhQkolmgMWbKPzKGGI940oe7pePMektvTHQB4+HGzgzVsEyhYxBX0S6hBxfowWh8A63EfkWoi804HK9LgDPT0D0PXntfQW3BC6DOCLCmyNYKrN0osQuipxNsEav26p8YQ65558bz8mTJidoZq0Tvvg33GevwODAyHRFRhMi0SwjjLVY50M8s2NNh0HodoQqCbcO3s0z+fiE7ApY/oVth642BB6lNUDd719yPi+Q3SoI8HEXIaXUO/g70RIF1GUcI9jQmmv3M+oBxllxrxdDeYbeHHGIpfAAz6ESRhk7SJ5HDqEH57L1wG5fKX6iEKZqFQJ/BNlyHFng278CYexA4krJ7q4PYpSpTBl7kJ6soZczXE6BZc7++hXGrDaZWosEfTBNHFt4fJMvYJb7F5+p/cifVumH2scXz9q2RnRKgTlJkzUfQIYJvDCB9SPU5m9O6vtmBbO/KhQ1nhO6Kv1vF2IwWpfpEadx2BrrwSUD3mWKfAj+3XBpkiZ3v9vD8/fmM5Rug+LgQR6d5inXCG4Tx6acj1JeQgXybHLZ95D6NnIWeqE0x0CfxNseWh21DbOqFCeVo3RHnL4LuNLU91eXAzYu8sGVTsDAlJyY=
-        # secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
+        secure: hmRHud0oWh+QLWdcnlsu5GO640/57q6HNzp5jAHAfo/RzxHj5vIGqii3xJjb66PKWrBG1JSoR6hGbStqIEDfnXwK75tE0oe3c8ASpx+4QB+oTT9NFmYK158hHIfTpV/MGm/Zw6CeoSSEg7dQB1cZV8dOaUByp5tPbyeWU0337/cPQfL3FLC4nm2S3WMZa3UqtvnoCoJkZVbNWSvdlsX/M+B6ir3JdInfvq8AjG3G0HdIGv7g+y2QmPHJsN3BSM8ovCol7yeAaA6hn7XQKFOdJOQCjPnHBnAiU+2x2VVMcDwyxI2TIOZ/wQB2QvarlXaxz5lucx8Pw3IvkIQyzpe0JWWBkrr76LYZ9FLiwzc0KQwERJ62v3MKm/rvILjiP6b2MtuUKX+a1FHiAh3p1WYV70f8FyPqz0MBDzaZcDUD5IMD4i4xYicerDhSiRrDevlJjZSHCkk7Z8agxE8aiD5KcFRjT8knXFqtSUfbUI+GW8D5jSx+q0IOoXICesDVUNmOkLVUoNqUVmVDNVOGFyvUswAgB5bRteKiJZDgRwA9GR16Cu0OxAJ+CU2IJbnZX6Mhb0TnURnRN2HcfPlyEXaUguDrYlLmyNo9kVCDBYs0S2zp/QeEdTeFP2GpaT4UIlYRIwTwMkhnMN1r8MP76vmUHQPuMAXxkAkGa4FSEqSAWSU=
+      on:
+        tags: true
+        distributions: sdist bdist_wheel
+        repo: titom73/arista-cvp-scripts
