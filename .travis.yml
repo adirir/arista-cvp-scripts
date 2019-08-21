@@ -3,34 +3,34 @@ python:
 - '2.7'
 jobs:
   include:
-  - stage: code-quality
-    install:
-    - pip install -r requirements.txt
-    - pip install flake8
-    script:
-    - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
-    - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
-  - stage: code-load
-    install:
-    - pip install -r requirements.txt
-    script:
-    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-    - python bin/cvp-configlet-manager.py -h
-    - python bin/cvp-container-manager.py -h
-    - python bin/cvp-configlet-backup.py -h
-    - python bin/cvp-task-manager.py -h
-  - stage: installation
-    script:
-    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-    - cvp-configlet-manager -h
-    - cvp-container-manager -h
-    - cvp-configlet-backup -h
-    - cvp-task-manager -h
+    - stage: code-quality
+      install:
+      - pip install -r requirements.txt
+      - pip install flake8
+      script:
+      - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
+      - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
+      
+    - stage: code-load
+      install:
+      - pip install -r requirements.txt
+      script:
+      - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+      - python bin/cvp-configlet-manager.py -h
+      - python bin/cvp-container-manager.py -h
+      - python bin/cvp-configlet-backup.py -h
+      - python bin/cvp-task-manager.py -h
 
-  - stage: deploy
-    provider: pypi
-    username: titom73
-    password:
-      secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
-    on:
-      tag: true
+    - stage: installation
+      script:
+      - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+      - cvp-configlet-manager -h
+      - cvp-container-manager -h
+      - cvp-configlet-backup -h
+      - cvp-task-manager -h
+
+deploy:
+  provider: pypi
+  username: titom73
+  password:
+    secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
