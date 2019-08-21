@@ -4,6 +4,7 @@ python:
 jobs:
   include:
   - stage: code-quality
+    name: Ensure code is PEP8 compliant
     install:
     - pip install -r requirements.txt
     - pip install flake8
@@ -11,6 +12,7 @@ jobs:
     - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
     - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
   - stage: code-load
+    name: Test code is correctly loaded
     install:
     - pip install -r requirements.txt
     script:
@@ -20,16 +22,15 @@ jobs:
     - python bin/cvp-configlet-backup.py -h
     - python bin/cvp-task-manager.py -h
   - stage: installation
+    name: Test installation process from original respository
     script:
     - pip install git+https://github.com/titom73/arista-cvp-scripts.git
     - cvp-configlet-manager -h
     - cvp-container-manager -h
     - cvp-configlet-backup -h
     - cvp-task-manager -h
-  - stage: staging-deploy
-    install:
-    - pip install -r requirements.txt
-    - pip install flake8
+  - stage: pypi-deploy
+    name: Push package to pypi servers
     script:
     - echo "deploy to test.pypi.org"
     deploy:
@@ -40,6 +41,6 @@ jobs:
       password:
         secure: hmRHud0oWh+QLWdcnlsu5GO640/57q6HNzp5jAHAfo/RzxHj5vIGqii3xJjb66PKWrBG1JSoR6hGbStqIEDfnXwK75tE0oe3c8ASpx+4QB+oTT9NFmYK158hHIfTpV/MGm/Zw6CeoSSEg7dQB1cZV8dOaUByp5tPbyeWU0337/cPQfL3FLC4nm2S3WMZa3UqtvnoCoJkZVbNWSvdlsX/M+B6ir3JdInfvq8AjG3G0HdIGv7g+y2QmPHJsN3BSM8ovCol7yeAaA6hn7XQKFOdJOQCjPnHBnAiU+2x2VVMcDwyxI2TIOZ/wQB2QvarlXaxz5lucx8Pw3IvkIQyzpe0JWWBkrr76LYZ9FLiwzc0KQwERJ62v3MKm/rvILjiP6b2MtuUKX+a1FHiAh3p1WYV70f8FyPqz0MBDzaZcDUD5IMD4i4xYicerDhSiRrDevlJjZSHCkk7Z8agxE8aiD5KcFRjT8knXFqtSUfbUI+GW8D5jSx+q0IOoXICesDVUNmOkLVUoNqUVmVDNVOGFyvUswAgB5bRteKiJZDgRwA9GR16Cu0OxAJ+CU2IJbnZX6Mhb0TnURnRN2HcfPlyEXaUguDrYlLmyNo9kVCDBYs0S2zp/QeEdTeFP2GpaT4UIlYRIwTwMkhnMN1r8MP76vmUHQPuMAXxkAkGa4FSEqSAWSU=
       on:
-        branch: devel
+        tags: true
         distributions: sdist bdist_wheel
         repo: titom73/arista-cvp-scripts
