@@ -52,7 +52,7 @@ from cvprac.cvp_client_errors import CvpLoginError
 
 
 # Code version
-__version__ = '0.3'
+__version__ = '0.3.1'
 
 # Author information
 __author__ = 'Thomas Grimonet'
