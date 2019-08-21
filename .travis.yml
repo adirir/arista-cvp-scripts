@@ -36,10 +36,9 @@ jobs:
     deploy:
       provider: pypi
       username: titom73
-      server: https://test.pypi.org/legacy/
       skip_existing: true
       password:
-        secure: hmRHud0oWh+QLWdcnlsu5GO640/57q6HNzp5jAHAfo/RzxHj5vIGqii3xJjb66PKWrBG1JSoR6hGbStqIEDfnXwK75tE0oe3c8ASpx+4QB+oTT9NFmYK158hHIfTpV/MGm/Zw6CeoSSEg7dQB1cZV8dOaUByp5tPbyeWU0337/cPQfL3FLC4nm2S3WMZa3UqtvnoCoJkZVbNWSvdlsX/M+B6ir3JdInfvq8AjG3G0HdIGv7g+y2QmPHJsN3BSM8ovCol7yeAaA6hn7XQKFOdJOQCjPnHBnAiU+2x2VVMcDwyxI2TIOZ/wQB2QvarlXaxz5lucx8Pw3IvkIQyzpe0JWWBkrr76LYZ9FLiwzc0KQwERJ62v3MKm/rvILjiP6b2MtuUKX+a1FHiAh3p1WYV70f8FyPqz0MBDzaZcDUD5IMD4i4xYicerDhSiRrDevlJjZSHCkk7Z8agxE8aiD5KcFRjT8knXFqtSUfbUI+GW8D5jSx+q0IOoXICesDVUNmOkLVUoNqUVmVDNVOGFyvUswAgB5bRteKiJZDgRwA9GR16Cu0OxAJ+CU2IJbnZX6Mhb0TnURnRN2HcfPlyEXaUguDrYlLmyNo9kVCDBYs0S2zp/QeEdTeFP2GpaT4UIlYRIwTwMkhnMN1r8MP76vmUHQPuMAXxkAkGa4FSEqSAWSU=
+        secure: SiCZUeZOAyTjB9+lq8chh5lSA+/M2uma0vxj2j+uiuFVNbHIdwhPnWi1Hu71tGDUSO9j827HE7DhNHhjDqDpfA8rHOyHm/2KM9tiGjyTS65AB6mI2jQP/34m/6tYxM+zof56jU5Tn9zlNR2XqBqlhRwMMFrjcT+9B1CFCPE7/8/K7Sw48Vw0DltQzpQPQ34g2TbcTFydWJu4kJCONVHnY1x2jmddda6iJc6Lkg6enSHEDPccHdOXcaMjGc4+ST4uCPEi+1CzCVhItmviqBclVxZvYC8cKzslMaE2sohgsuPkhyVcZYqwCXyoDBFHZMo08A3DdSkksxbnewS2LSZ5HzWkBEiqGQwbJLnl6uy9gMqLlfVDHHIOloAi0OcakX1LmOJDlD+M4M39GvVDHZJL9MIxkt4RxTM+yuYb8GWxYAs8yqBk3Jr7zs55/eEAIHvKyTBm6NoDg01K6TT0mO6ecsA1yMWEDYqwHPBXQsj4S0oM1JgvvJ6u17LcTcLcjFBTu63eHgEy3tlTB0ds53vruNBTN4OVs5/IGmcI2YuJvMIXbON+KewvVMKTAn7fr5eQN5JZW77WbP3UgZheT+oFp1vrTDAuwyp0ShAmZrpj6RsLC0dWSdsHIy98gFlfx+Vj1Ox0fJcD8FscvGhJKwQ0TdKa1cBPSB6/NapHGG36Cxg=
       on:
         tags: true
         distributions: sdist bdist_wheel
