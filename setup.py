@@ -24,7 +24,7 @@ AUTHOR_EMAIL = str(__email__)
 LICENSE = str(__license__)
 
 setup(
-    name="inetsix-arista-cvp",
+    name="inetsix-cvp-scripts",
     version=VERSION,
     scripts=["bin/cvp-task-manager", "bin/cvp-container-manager", "bin/cvp-configlet-manager", "bin/cvp-configlet-backup"],
     packages=['cvprac_abstraction'],

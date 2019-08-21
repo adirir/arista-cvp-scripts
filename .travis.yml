@@ -29,8 +29,15 @@ jobs:
       - cvp-configlet-backup -h
       - cvp-task-manager -h
 
-deploy:
-  provider: pypi
-  username: titom73
-  password:
-    secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
+    - stage: staging-deploy
+      install:
+      - pip install -r requirements.txt
+      - pip install flake8
+      script:
+      - echo "deploy to test.pypi.org"
+      deploy:
+        provider: pypi
+        username: titom73
+        server: https://test.pypi.org/legacy/
+        password:
+          secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
