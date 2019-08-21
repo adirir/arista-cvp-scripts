@@ -3,41 +3,39 @@ python:
 - '2.7'
 jobs:
   include:
-    - stage: code-quality
-      install:
-      - pip install -r requirements.txt
-      - pip install flake8
-      script:
-      - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
-      - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
-      
-    - stage: code-load
-      install:
-      - pip install -r requirements.txt
-      script:
-      - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-      - python bin/cvp-configlet-manager.py -h
-      - python bin/cvp-container-manager.py -h
-      - python bin/cvp-configlet-backup.py -h
-      - python bin/cvp-task-manager.py -h
-
-    - stage: installation
-      script:
-      - pip install git+https://github.com/titom73/arista-cvp-scripts.git
-      - cvp-configlet-manager -h
-      - cvp-container-manager -h
-      - cvp-configlet-backup -h
-      - cvp-task-manager -h
-
-    - stage: staging-deploy
-      install:
-      - pip install -r requirements.txt
-      - pip install flake8
-      script:
-      - echo "deploy to test.pypi.org"
-      deploy:
-        provider: pypi
-        username: titom73
-        server: https://test.pypi.org/legacy/
-        password:
-          secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
+  - stage: code-quality
+    install:
+    - pip install -r requirements.txt
+    - pip install flake8
+    script:
+    - python -m flake8 --statistics --count --ignore E722,E501 bin/*.py
+    - python -m flake8 --statistics --count --ignore E722,E501 cvprac_abstraction/*.py
+  - stage: code-load
+    install:
+    - pip install -r requirements.txt
+    script:
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+    - python bin/cvp-configlet-manager.py -h
+    - python bin/cvp-container-manager.py -h
+    - python bin/cvp-configlet-backup.py -h
+    - python bin/cvp-task-manager.py -h
+  - stage: installation
+    script:
+    - pip install git+https://github.com/titom73/arista-cvp-scripts.git
+    - cvp-configlet-manager -h
+    - cvp-container-manager -h
+    - cvp-configlet-backup -h
+    - cvp-task-manager -h
+  - stage: staging-deploy
+    install:
+    - pip install -r requirements.txt
+    - pip install flake8
+    script:
+    - echo "deploy to test.pypi.org"
+    deploy:
+      provider: pypi
+      username: titom73
+      server: https://test.pypi.org/legacy/
+      password:
+        secure: iRHM43JQTMr4ydy3yXzENVwBsNck1UK3PcNhdyCkfJxmMa4vhYZ2bgWOQWx4zJyPg6n63kuWIhQkolmgMWbKPzKGGI940oe7pePMektvTHQB4+HGzgzVsEyhYxBX0S6hBxfowWh8A63EfkWoi804HK9LgDPT0D0PXntfQW3BC6DOCLCmyNYKrN0osQuipxNsEav26p8YQ65558bz8mTJidoZq0Tvvg33GevwODAyHRFRhMi0SwjjLVY50M8s2NNh0HodoQqCbcO3s0z+fiE7ApY/oVth642BB6lNUDd719yPi+Q3SoI8HEXIaXUO/g70RIF1GUcI9jQmmv3M+oBxllxrxdDeYbeHHGIpfAAz6ESRhk7SJ5HDqEH57L1wG5fKX6iEKZqFQJ/BNlyHFng278CYexA4krJ7q4PYpSpTBl7kJ6soZczXE6BZc7++hXGrDaZWosEfTBNHFt4fJMvYJb7F5+p/cifVumH2scXz9q2RnRKgTlJkzUfQIYJvDCB9SPU5m9O6vtmBbO/KhQ1nhO6Kv1vF2IwWpfpEadx2BrrwSUD3mWKfAj+3XBpkiZ3v9vD8/fmM5Rug+LgQR6d5inXCG4Tx6acj1JeQgXybHLZ95D6NnIWeqE0x0CfxNseWh21DbOqFCeVo3RHnL4LuNLU91eXAzYu8sGVTsDAlJyY=
+        # secure: aDNqEUOFye56eJOOy7r1HQfAvBnZx2iS/cQzjrCAlGhbHIYi35F1xkZ8DhxEjkJ2noLFsHaEcTjAPI+WQG2nSVnFscuzGI9DdrCmXKXjXzpxVYj0xr/1kSxOBMCPAqbFaZYT0hJ2NM+Ut8HcNi5pjFO4N42lRHK3RtnpBbMSbZygA4eJwrjTgrM/9PDm1Je1St64ss7WMBIg3t5eF+gOr7u6/3xkNVsIr6xHNkyUkkjwaWoN29uDxYzfGF5R5nk3hHvRtLmSkiYo38f97XePDo76bpR26xsCNxnSZBZPiCs2/3kqGYvtLZ0C8V2PDyrkBnXszGG+sx06ViGSkz+wU3R89NU0sItunfFNYMEPUecv9sQehCchvpll2ynCkATLpmp+lTgxjxaHUwGZ9QKMZaGSb/ps8Gh88oKO7YK7PjQWv6HnHrgQV/GQQ0rw2b3ZnauYPFjNYPhFUJWJ1UzNMpH9o7UVePvWK9Kn0XwvWhub+zGuIHhK64U5lIgE25mBgM8AVuo6rTVce0Pk2DdGL343HkVXVsYMwX1KJAywr7JdbZwf4BHfjIgh7R8D7gsiqzsp1L22MpZZf2ZDPlryBN1ItA/tTnbZOq11AwWNS9id/X9AllBspelO9uiMGfpeASOqjFQWgD8OLzlULQmsLW7i24obS0HEa7ggSggZWgA=
