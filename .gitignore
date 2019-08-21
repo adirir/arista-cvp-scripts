@@ -177,4 +177,5 @@ backup/*
 # Ignore renamed file with setup.py
 bin/cvp-configlet-manager
 bin/cvp-container-manager
+bin/cvp-task-manager
 bin/cvp-configlet-backup

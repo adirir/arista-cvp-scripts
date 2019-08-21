@@ -1,3 +1,6 @@
+.. image: https://img.shields.io/badge/Arista-CVP Automation-blue
+    :alt: Arista CVP Automation
+
 .. image:: https://img.shields.io/github/license/titom73/arista-cvp-scripts .svg
     :target: https://github.com/titom73/arista-cvp-scripts/blob/master/LICENSE
     :alt: License Model
